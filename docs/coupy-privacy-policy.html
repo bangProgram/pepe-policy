@@ -160,7 +160,7 @@
             <td>쿠폰 이미지</td>
             <td>사용자가 직접 선택하여 등록</td>
             <td>기기 내부 저장소</td>
-            <td>쿠폰 관리 및 정보 추출</td>
+            <td>쿠폰 관리</td>
           </tr>
           <tr>
             <td>바코드 데이터</td>
@@ -170,9 +170,11 @@
           </tr>
           <tr>
             <td>쿠폰 정보 (브랜드, 상품명, 유효기간 등)</td>
-            <td>Claude API를 통한 자동 추출</td>
+            <td>
+              이미지에서 온디바이스 자동 인식(ML Kit OCR) 또는 사용자 직접 입력
+            </td>
             <td>기기 내부 데이터베이스</td>
-            <td>쿠폰 정보 표시 및 만료 알림</td>
+            <td>쿠폰 정보 표시 및 관리</td>
           </tr>
           <tr>
             <td>광고 식별자 (GAID)</td>
@@ -197,17 +199,14 @@
           바코드 제시
         </li>
         <li>
-          <strong>쿠폰 정보 자동 추출:</strong> 이미지에서 브랜드, 상품명,
-          유효기간 등을 인식
+          <strong>쿠폰 정보 자동 인식:</strong> 온디바이스 OCR을 통해 이미지에서
+          브랜드, 상품명, 유효기간 등을 자동 추출
         </li>
-        <li><strong>만료 알림:</strong> 유효기간 임박 시 로컬 알림 제공</li>
         <li><strong>광고 제공:</strong> Google AdMob을 통한 광고 표시</li>
       </ul>
 
       <h2>3. 개인정보의 제3자 제공</h2>
-      <p>
-        앱은 서비스 제공을 위해 다음의 제3자에게 최소한의 정보를 제공합니다.
-      </p>
+      <p>앱은 광고 제공을 위해 다음의 제3자에게 최소한의 정보를 제공합니다.</p>
 
       <table>
         <thead>
@@ -220,12 +219,6 @@
         </thead>
         <tbody>
           <tr>
-            <td>Anthropic (Claude API)</td>
-            <td>쿠폰 이미지</td>
-            <td>쿠폰 정보 자동 추출 (브랜드, 상품명, 유효기간, 바코드 등)</td>
-            <td>API 처리 완료 후 즉시 파기 (서버 미보관)</td>
-          </tr>
-          <tr>
             <td>Google (AdMob)</td>
             <td>광고 식별자, 기기 정보</td>
             <td>맞춤형 광고 제공</td>
@@ -235,9 +228,14 @@
       </table>
 
       <div class="highlight">
-        <strong>Google ML Kit (바코드 인식):</strong> 모든 처리가 사용자의
-        기기에서 수행되며, 이미지나 바코드 데이터가 외부 서버로 전송되지
-        않습니다.
+        <strong>Google ML Kit (바코드 인식 및 텍스트 인식):</strong> 바코드
+        스캔과 OCR 텍스트 인식 모두 사용자의 기기에서 수행되며, 이미지나 인식
+        데이터가 외부 서버로 전송되지 않습니다.
+      </div>
+
+      <div class="highlight">
+        <strong>참고:</strong> 쿠폰 이미지 및 쿠폰 정보는 외부 서버로 전송되지
+        않으며, 모든 데이터는 사용자의 기기 내부에만 저장됩니다.
       </div>
 
       <h2>4. 개인정보의 보관 및 파기</h2>
@@ -249,19 +247,19 @@
         보관하지 않습니다.
       </p>
 
-      <h3>4-2. 자동 정리 정책</h3>
+      <h3>4-2. 쿠폰 정리 기능</h3>
       <ul>
         <li>
-          <strong>사용 완료 쿠폰 이미지:</strong> 사용 완료 후 30일 경과 시 자동
-          삭제
+          <strong>사용 완료 쿠폰 이미지:</strong> 사용자가 정리 기능 실행 시,
+          사용 완료 후 30일 경과한 쿠폰의 이미지를 삭제
         </li>
         <li>
-          <strong>사용 완료 쿠폰 기록:</strong> 사용 완료 후 60일 경과 시 자동
-          삭제
+          <strong>사용 완료 쿠폰 기록:</strong> 사용자가 정리 기능 실행 시, 사용
+          완료 후 60일 경과한 쿠폰의 기록을 삭제
         </li>
         <li>
           <strong>보호 설정 쿠폰:</strong> 사용자가 보호(잠금) 설정한 쿠폰은
-          자동 삭제에서 제외
+          정리 대상에서 제외
         </li>
       </ul>
 
@@ -306,7 +304,7 @@
         <tbody>
           <tr>
             <td>카메라 (CAMERA)</td>
-            <td>쿠폰 이미지 촬영 및 바코드 스캔</td>
+            <td>쿠폰 이미지 촬영</td>
             <td>선택</td>
           </tr>
           <tr>
@@ -316,7 +314,7 @@
           </tr>
           <tr>
             <td>인터넷 (INTERNET)</td>
-            <td>Claude API 호출, 광고 로드</td>
+            <td>광고 로드</td>
             <td>필수</td>
           </tr>
         </tbody>
@@ -358,10 +356,10 @@
       <h2>10. 개인정보 보호책임자 및 문의</h2>
       <div class="contact-box">
         <p><strong>앱 이름:</strong> 쿠피(Coupy)</p>
-        <p><strong>개발자:</strong> [pepe.dev222]</p>
+        <p><strong>개발자:</strong> [개발자 이름]</p>
         <p>
           <strong>이메일:</strong>
-          <a href="mailto:[pepe.dev222@gmail.com]">[pepe.dev222@gmail.com]</a>
+          <a href="mailto:[이메일 주소]">[이메일 주소]</a>
         </p>
         <p style="margin-top: 12px; color: #888; font-size: 0.9em">
           개인정보 관련 문의사항이 있으시면 위 이메일로 연락해 주시기 바랍니다.
