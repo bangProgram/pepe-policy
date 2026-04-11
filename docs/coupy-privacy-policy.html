@@ -203,6 +203,11 @@
           브랜드, 상품명, 유효기간 등을 자동 추출
         </li>
         <li><strong>광고 제공:</strong> Google AdMob을 통한 광고 표시</li>
+        <li>
+          <strong>만료 알림:</strong> 쿠폰 유효기간 만료 전 로컬 알림 발송
+          (D-3, D-1, D-Day). 알림은 기기 내에서만 처리되며 외부 서버로
+          데이터가 전송되지 않습니다.
+        </li>
       </ul>
 
       <h2>3. 개인정보의 제3자 제공</h2>
@@ -316,6 +321,11 @@
             <td>인터넷 (INTERNET)</td>
             <td>광고 로드</td>
             <td>필수</td>
+          </tr>
+          <tr>
+            <td>알림 (POST_NOTIFICATIONS)</td>
+            <td>쿠폰 만료 임박 알림 (D-3, D-1, D-Day)</td>
+            <td>선택</td>
           </tr>
         </tbody>
       </table>
